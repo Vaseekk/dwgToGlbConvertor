@@ -59,17 +59,17 @@ def run(cmd: list[str]) -> None:
 
 
 def call_oda_folder(oda_exe: str, src_dir: Path, dst_dir: Path, dxf_version: str) -> None:
-    # ODA File Converter CLI usage (simplified):
-    # ODAFileConverter <inDir> <outDir> <inVer> <outVer> <type> [options]
-    # We use: inVer=ACAD2018 (auto), outVer=<dxf_version>, type=DXF
+    # ODA File Converter CLI usage (from help dialog):
+    # ODAFileConverter "inDir" "outDir" Output_version {"DWG","DXF","DXB"} Recurse Audit [filter]
     cmd = [
         oda_exe,
         str(src_dir),
         str(dst_dir),
-        "ACAD2018",
         dxf_version,
         "DXF",
-        "0",  # recurse: 0 no, 1 yes (we handle recursion ourselves)
+        "0",  # recurse: 0 no, 1 yes
+        "0",  # audit: 0 off, 1 on
+        "*.DWG",
     ]
     run(cmd)
 
@@ -79,6 +79,21 @@ def assimp_export(assimp_exe: str, dxf_file: Path, out_file: Path, glb: bool) ->
     out_file.parent.mkdir(parents=True, exist_ok=True)
     cmd = [assimp_exe, "export", str(dxf_file), str(out_file), "-f", fmt]
     run(cmd)
+
+
+def normalize_dxf_version(version: str) -> str:
+    v = (version or "").upper().strip()
+    if v.startswith("ACAD"):
+        return v
+    code_to_acad = {
+        "AC1015": "ACAD2000",
+        "AC1018": "ACAD2004",
+        "AC1021": "ACAD2007",
+        "AC1024": "ACAD2010",
+        "AC1027": "ACAD2013",
+        "AC1032": "ACAD2018",
+    }
+    return code_to_acad.get(v, "ACAD2018")
 
 
 def convert_single_file(oda_exe: str, assimp_exe: str, dwg_path: Path, out_dir: Path, dxf_version: str, glb: bool) -> Path:
@@ -92,7 +107,7 @@ def convert_single_file(oda_exe: str, assimp_exe: str, dwg_path: Path, out_dir: 
         tmp_out.mkdir(parents=True, exist_ok=True)
         staged = tmp_src / dwg_path.name
         shutil.copy2(dwg_path, staged)
-        call_oda_folder(oda_exe, tmp_src, tmp_out, dxf_version)
+        call_oda_folder(oda_exe, tmp_src, tmp_out, normalize_dxf_version(dxf_version))
         dxf_path = tmp_out / (dwg_path.stem + ".dxf")
         if not dxf_path.exists():
             # ODA may preserve subfolders; search for produced DXF
