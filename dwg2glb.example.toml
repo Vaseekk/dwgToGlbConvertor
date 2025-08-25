@@ -1,0 +1,15 @@
+[tools]
+# Absolute path to ODA File Converter executable (if not on PATH)
+oda = "C:\\Program Files\\ODA\\ODAFileConverter\\ODAFileConverter.exe"
+
+# Absolute path to assimp.exe (if not on PATH)
+assimp = "C:\\Program Files\\Assimp\\bin\\assimp.exe"
+
+[defaults]
+# DXF target version for ODA export (ACAD2000|ACAD2004|ACAD2007|ACAD2010|ACAD2013|ACAD2018)
+dxf_version = "ACAD2018"
+
+# Whether to export GLB (true) or GLTF (false)
+glb = true
+
+
