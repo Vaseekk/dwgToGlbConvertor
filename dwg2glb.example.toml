@@ -1,15 +1,21 @@
 [tools]
-# Absolute path to ODA File Converter executable (if not on PATH)
+# Absolute path to AutoCAD executable (if not on PATH)
+autocad = "C:\\Program Files\\Autodesk\\AutoCAD 2024\\acad.exe"
+
+# Absolute path to Blender executable (if not on PATH)
+blender = "C:\\Program Files\\Blender Foundation\\Blender 4.0\\blender.exe"
+
+# Absolute path to ODA File Converter executable (if not on PATH) - legacy mode only
 oda = "C:\Program Files\ODA\ODAFileConverter 27.0.0\ODAFileConverter.exe"
 
-# Absolute path to assimp.exe (if not on PATH)
+# Absolute path to assimp.exe (if not on PATH) - legacy mode only
 assimp = "C:\\Program Files\\Assimp\\bin\\assimp.exe"
 
 [defaults]
-# DXF target version for ODA export (ACAD2000|ACAD2004|ACAD2007|ACAD2010|ACAD2013|ACAD2018)
+# DXF target version for ODA export (ACAD2000|ACAD2004|ACAD2007|ACAD2010|ACAD2013|ACAD2018) - legacy mode only
 dxf_version = "ACAD2018"
 
-# Whether to export GLB (true) or GLTF (false)
+# Whether to export GLB (true) or GLTF (false) - legacy mode only
 glb = true
 
 

@@ -1,0 +1,5 @@
+# Core dependencies
+tomli; python_version < "3.11"  # For TOML parsing in older Python versions
+
+# Optional dependencies for AutoCAD COM automation
+pywin32>=306  # For COM automation with AutoCAD (Windows only)
