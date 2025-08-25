@@ -1,6 +1,6 @@
 [tools]
 # Absolute path to ODA File Converter executable (if not on PATH)
-oda = "C:\\Program Files\\ODA\\ODAFileConverter\\ODAFileConverter.exe"
+oda = "C:\Program Files\ODA\ODAFileConverter 27.0.0\ODAFileConverter.exe"
 
 # Absolute path to assimp.exe (if not on PATH)
 assimp = "C:\\Program Files\\Assimp\\bin\\assimp.exe"

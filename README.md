@@ -13,7 +13,7 @@ This small Python CLI converts DWG files to GLB by chaining two widely-used tool
   - Download: `https://www.opendesign.com/guestfiles/oda_file_converter`
   - Typical executable: `C:\Program Files\ODA\ODAFileConverter\ODAFileConverter.exe` (path may vary)
 - Assimp CLI installed:
-  - Download binaries: `https://github.com/assimp/assimp/releases`
+  - Download binaries: `https://github.com/assimp/assimp/releases` or `https://kimkulling.itch.io/the-asset-importer-lib`
   - After install, ensure `assimp.exe` is on PATH or note its full path
 
 ### Quick start
